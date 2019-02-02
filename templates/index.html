@@ -1,84 +1,129 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
-	<head>
-		<title>Pawfect</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="../static/css/main.css" />
-		<noscript><link rel="stylesheet" href="../static/css/noscript.css" /></noscript>
-	<!-- Scripts -->
-		<script src="../static/js/jquery.min.js"></script>
-		<script src="../static/js/browser.min.js"></script>
-		<script src="../static/js/breakpoints.min.js"></script>
-		<script src="../static/js/util.js"></script>
-		<script src="../static/js/main.js"></script>
-		<script type="text/javascript">
-			function filterspec() {
-    			var x = {
-					'StrangerDirectedAggression': 2,
-					'OwnerDirectedAggression': 2,
-					'DogDirectedAggression': 2,
-					'StrangerDirectedFear': 2,
-					'DogDirectedFear': 2,
-					'NonsocialFear': 2,
-					'DogRivalry': 2,
-					'Trainability': 2,
-					'Chasing': 2,
-					'AttachmentAttentionSeeking': 2,
-					'SeparationRelatedBehavior': 2,
-					'TouchSensitivity': 2,
-					'Excitability': 2,
-					'EnergyLevel': 2};
-    			
-    			$.ajax({
-    				url:'http://127.0.0.1:5000/filter',
-    				data: JSON.stringify(x),
-    				contentType:'application/json;charset=UTF-8',
-    				type : 'POST',
-    				success: function(response){
-    					console.log(response);
-    				},
-    				error: function (error) {
-    					console.log(error);
-    				}
-    			})
-    			event.preventDefault();
-				}
-		</script>
-	</head>
-	<body class="is-preload">
+  <head>
+      <title>Pawfect</title>
+      <meta charset="utf-8" />
+      <link rel="stylesheet" href="../static/css/main.css" />
+      <script type="text/javascript" src="../static/js/jquery.min.js"></script>
+      <script type="text/javascript" src="../static/js/jquery.serializejson.js"></script>
+      <script type="text/javascript">
+         function generateJson() {
 
-		<!-- Wrapper -->
-			<div id="wrapper">
+          var obj = $('#specification-form').serializeJSON();
+          var jsonString = JSON.stringify(obj);
+          console.log(jsonString);  
 
-				<!-- Header -->
-					<header id="header">
-						<div class="content">
-							<div class="inner">
-								<h1>Pawfect.ai</h1>
-								<p>Find your Pawfect Doggo <br />
-								!!Testing zone - Unfinished project!!</p>
-							</div>
-						</div>
-					</header>
+          $.ajax({
+            url:'/filter',
+            data: JSON.stringify(jsonString),
+            contentType:'application/json;
+            charset=UTF-8',
+            type : 'POST',
+            success: function(response){
+              console.log(response);
+            },
+            error: function (error) {
+              console.log(error);
+            }
+          })
 
-				<div class="is-preload">
-					<p>This is an experiment</p>
-				</div>
-				<button onclick="filterspec()">
-					click Me!
-				</button>
-				<!-- Footer -->
-					<footer id="footer">
-						<p class="copyright">Puppy Right SCIROP 2019. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
-					</footer>
+          event.preventDefault();
 
-			</div>
+         }
+      </script>
+  </head>
+  <body>
+    <H1>Dog search specifications :</H1>
+    <form id = "specification-form">
+      <input type="range" id="SDA" name="StrangerDirectedAggression"
+             min="0" max="10">
+      <br>
+      <label for="Stranger Directed Aggression">Stranger Directed Aggression</label>
+      <br>
+      
+      <input type="range" id="ODA" name="OwnerDirectedAggression"
+             min="0" max="10">
+      <br>
+      <label for="Owner Directed Aggression">Owner Directed Aggression</label>
+      <br>
+      
 
-		<!-- BG -->
-			<div id="bg"></div>
+      <input type="range" id="DogDirectedAggression" name="DogDirectedAggression"
+             min="0" max="10">
+      <br>
+      <label for="Energy Level">Dog irected Aggression</label>
+      <br>
 
-	
 
-	</body>
+      <input type="range" id="StrangerDirectedFear" name="StrangerDirectedFear"
+             min="0" max="10">
+      <br>
+      <label for="Energy Level">Stranger Directed Fear</label>
+      <br>
+
+      <input type="range" id="DogDirectedFear" name="DogDirectedFear"
+             min="0" max="10">
+      <br>
+      <label for="Energy Level">Dog Directed Fear</label>
+      <br>
+
+      <input type="range" id="NonsocialFear" name="NonsocialFear"
+             min="0" max="10">
+      <br>
+      <label for="Energy Level">Non social Fear</label>
+      <br>
+
+      <input type="range" id="DogRivalry" name="DogRivalry"
+             min="0" max="10">
+      <br>
+      <label for="Energy Level">Dog Rivalry</label>
+      <br>
+
+      <input type="range" id="Trainability" name="Trainability"
+             min="0" max="10">
+      <br>
+      <label for="Energy Level">Trainability</label>
+      <br>
+
+      <input type="range" id="Chasing" name="Chasing"
+             min="0" max="10">
+      <br>
+      <label for="Energy Level">Chasing</label>
+      <br>
+
+      <input type="range" id="AttachmentAttentionSeeking" name="AttachmentAttentionSeeking"
+             min="0" max="10">
+      <br>
+      <label for="Energy Level">Attachment Attention Seeking</label>
+      <br>
+
+      <input type="range" id="SeparationRelatedBehavior" name="SeparationRelatedBehavior"
+             min="0" max="10">
+      <br>
+      <label for="Energy Level">Separation Related Behavior</label>
+      <br>
+
+      <input type="range" id="TouchSensitivity" name="TouchSensitivity"
+             min="0" max="10">
+      <br>
+      <label for="Energy Level">TouchSensitivity</label>
+      <br>
+
+      <input type="range" id="Excitability" name="Excitability"
+             min="0" max="10">
+      <br>
+      <label for="Excitability">Excitability</label>
+      <br>
+      
+      <input type="range" id="EnergyLevel" name="EnergyLevel"
+             min="0" max="10">
+      <br>
+      <label for="Energy Level">Energy Level</label>
+      <br>
+    
+    </form>
+    <div>
+      <button onclick="generateJson()">Submit</button>
+    </div> 
+  </body>
 </html>
