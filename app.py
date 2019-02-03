@@ -9,6 +9,13 @@ CORS(app)
 df = pd.read_csv('survey.csv')
 
 
+def filterfunc(fltparam,df):
+    for param in fltparam:
+        df = df[df[param] < float(fltparam[param]) + 2]
+        df = df[float(fltparam[param]) - 2 < df[param]]
+    return len(df)
+
+
 @app.route('/')
 def base():
     return render_template('main.html')
@@ -19,13 +26,16 @@ def index():
     return render_template('index.html')
 
 
+@app.route('/index', methods=['POST'])
+def filter_spec():
+    params = request.get_json()
+    print("in python function")
+    print(params)
+    return params
 
-# def filter_route():
-#     return render_template('filter.html')
-#
-# def filter():
-#     params = request.get_json()
-#     return jsonify(filterfunc(params, df2))
+
+    # df1 = df.groupby("BreedEntity").agg({key: "mean" for key in list(df)[2:]})
+    # return jsonify(filterfunc(params, df1))
 
 
 if __name__=='__main__':
