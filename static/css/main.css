@@ -1,2 +1,13 @@
 @import url(bootstrap.min.css);
+body, html, .container-fluid {
+     height: 100%;
+}
+
 body { background-image: url("../images/bg.jpg");} 
+
+.slider-handle.custom::before {
+            line-height: 20px;
+            font-size: 20px;
+            content: url("../images/dog.png") !important;
+            color: #726204;
+        }
