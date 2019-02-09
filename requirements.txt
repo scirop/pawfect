@@ -3,4 +3,3 @@ Flask==1.0.2
 pandas==0.23.4
 numpy==1.15.1
 flask-cors==3.0.7
-json==2.0.9
