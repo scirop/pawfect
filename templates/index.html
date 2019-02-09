@@ -13,7 +13,7 @@
             color: #726204;
           }
       </style>
-     
+
   </head>
   <body>
     <div>
@@ -42,7 +42,7 @@
             <label for="ODA">Owner Directed Aggression</label>
           </div>
         </div>
-      
+
         <!-- 2 X3-->
         <div class="row">
           <div class="col-sm">
@@ -155,20 +155,27 @@
             var obj = $('#specification-form').serializeJSON();
             var jsonString = JSON.stringify(obj);
             console.log(jsonString);
-            event.preventDefault();
-
             $.ajax({
-            url: "/index",
+            url: "/filter",
             type: "POST",
             contentType: "application/json",
             data: JSON.stringify(jsonString),
             success: function(data){
-            console.log(data);
+              document.write(data);
+            //console.log(data);
             console.log(jsonString);
+          },
+            error: function(e) {
+              console.log(e);
             }
            });
+           event.preventDefault();
          }
       </script>
-
+      <footer>
+         <nav class="text-center" style="vertical-align: bottom;">
+         <small>&copy; Copyright 2018 Swarup Sahoo & Arpit Mohanty </small>
+        </nav>
+      </footer>
   </body>
 </html>
